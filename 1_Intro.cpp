@@ -7,7 +7,9 @@ lli oddSum=0,evenSum=0;
 
 void findEven(lli start,lli end){
     while(start<=end){
-        evenSum+=start;
+        if(start%2==0){
+            evenSum+=start;
+        }
         start++;
     }
 }
@@ -15,14 +17,14 @@ void findEven(lli start,lli end){
 void findOdd(lli start,lli end){
     while (start<=end)
     {
-        oddSum+=start;
+        if(start%2==1) oddSum+=start;
         start++;
     }
     
 }
 
 int main(){
-    lli start=-100000000,end=1900000000;
+    lli start=0,end=1900000000;
     auto startTime=std::chrono::high_resolution_clock::now();
     findEven(start,end);
     findOdd(start,end);
