@@ -22,9 +22,9 @@ For example:
 <p>
 How to create Thread in Cpp
 
-1. Function Pointer
-2. Lambda Functions
-3. Functions
+1. Function Pointer :- It is basic type of the thread creation.
+2. Lambda Functions :- We can create thread by directly injecting lambda function.
+3. [Functor](https://www.geeksforgeeks.org/functors-in-cpp/) (Function Object) :- Callable Object 
 4. Member Functions
 5. Static Member Funciton
 

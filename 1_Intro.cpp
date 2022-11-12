@@ -47,7 +47,7 @@
     	cout << "OddSum : " << OddSum << endl;
     	cout << "EvenSum : " << EvenSum << endl;
      
-    	cout << "Sec: " << duration.count()/1000000 << endl;
+    	cout << "Sec: " << duration.count() << endl;
      
     	return 0;
     }
