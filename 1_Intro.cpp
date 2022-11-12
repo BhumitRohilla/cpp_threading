@@ -1,34 +1,53 @@
-#include<iostream>
-#include<thread>
-#include<chrono>
-
-#define lli unsigned long long 
-lli oddSum=0,evenSum=0;
-
-void findEven(lli start,lli end){
-    while(start<=end){
-        if(start%2==0){
-            evenSum+=start;
-        }
-        start++;
+    #include <iostream>
+    #include <thread>
+    #include <chrono>
+    #include <algorithm>
+    using namespace std;
+    using namespace std::chrono;
+    typedef long long int  ull;
+     
+    void findEven(ull start, ull end, ull* EvenSum) {
+    	for (ull i = start; i <= end; ++i){
+    		if (!(i & 1)){
+    			*(EvenSum) += i;
+    		}
+    	}
     }
-}
-
-void findOdd(lli start,lli end){
-    while (start<=end)
-    {
-        if(start%2==1) oddSum+=start;
-        start++;
+     
+    void findOdd(ull start, ull end, ull* OddSum) {
+    	for (ull i = start; i <= end; ++i){
+    		if (i & 1){
+    			(*OddSum) += i;
+    		}
+    	}
     }
-    
-}
-
-int main(){
-    lli start=0,end=1900000000;
-    auto startTime=std::chrono::high_resolution_clock::now();
-    findEven(start,end);
-    findOdd(start,end);
-    auto stopTime=std::chrono::high_resolution_clock::now();
-    auto duration=std::chrono::duration_cast<std::chrono::seconds>(stopTime-startTime);
-    std::cout<<duration.count()<<std::endl;
-}
+     
+    int main() {
+     
+    	ull start = 0, end = 1900000000;
+     
+    	ull OddSum = 0;
+    	ull EvenSum = 0;
+     
+        auto startTime = high_resolution_clock::now(); 
+     
+    	// // WITH THREAD
+        // std::thread t1(findEven, start, end, &(EvenSum));
+        // std::thread t2(findOdd, start, end, &(OddSum));
+     
+    	// t1.join();
+    	// t2.join();
+     
+    	// WITHOUT THREAD
+    	findEven(start,end, &EvenSum);
+    	findOdd(start, end, &OddSum);
+        auto stopTime = high_resolution_clock::now(); 
+        auto duration = duration_cast<microseconds>(stopTime - startTime);
+     
+    	cout << "OddSum : " << OddSum << endl;
+    	cout << "EvenSum : " << EvenSum << endl;
+     
+    	cout << "Sec: " << duration.count()/1000000 << endl;
+     
+    	return 0;
+    }
